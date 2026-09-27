@@ -1,0 +1,1500 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+body {
+    background: #0b1027;
+}
+
+.room {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(55, 68, 120, 0.18), transparent 35%),
+        linear-gradient(180deg, #0b1027 0%, #111938 55%, #10162f 100%);
+}
+
+/* =========================================
+   WINDOW
+========================================= */
+
+.window {
+    position: absolute;
+    width: 500px;
+    height: 440px;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #05091d;
+    border: 10px solid #443346;
+    box-shadow:
+        0 0 35px rgba(0, 0, 0, 0.35),
+        inset 0 0 30px rgba(20, 30, 70, 0.5);
+    z-index: 1;
+}
+
+.window::before,
+.window::after {
+    content: "";
+    position: absolute;
+    background: #443346;
+    z-index: 3;
+}
+
+.window::before {
+    width: 10px;
+    height: 100%;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+}
+
+.window::after {
+    width: 100%;
+    height: 10px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+/* =========================================
+   MOON
+========================================= */
+
+.moon {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    right: 17%;
+    top: 18%;
+    border-radius: 50%;
+    background: #fff1c9;
+    box-shadow:
+        0 0 20px rgba(255, 232, 174, 0.8),
+        0 0 55px rgba(255, 221, 150, 0.28);
+    z-index: 2;
+    transition: transform 1.5s ease;
+}
+
+/* =========================================
+   STARS
+========================================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image:
+        radial-gradient(circle at 15% 25%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 27% 68%, #ffffff 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 43% 22%, #ffffff 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 62% 75%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 30%, #ffffff 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 87% 70%, #ffffff 0 2px, transparent 3px),
+        radial-gradient(circle at 55% 45%, #ffffff 0 1px, transparent 2px);
+    opacity: 0.65;
+    animation: starsTwinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes starsTwinkle {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 0.8;
+    }
+}
+
+/* =========================================
+   LAMP
+========================================= */
+
+.lamp {
+    position: absolute;
+    right: 8%;
+    bottom: 19%;
+    width: 150px;
+    height: 250px;
+    z-index: 8;
+    cursor: pointer;
+}
+
+.lamp-shade {
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: 120px;
+    height: 85px;
+    background: #a67f63;
+    clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+    filter: drop-shadow(0 0 15px rgba(245, 194, 120, 0.15));
+}
+
+.lamp-light {
+    position: absolute;
+    top: 5px;
+    left: 28px;
+    width: 95px;
+    height: 70px;
+    background: rgba(255, 220, 155, 0.18);
+    border-radius: 50%;
+    filter: blur(18px);
+}
+
+.lamp-stand {
+    position: absolute;
+    top: 70px;
+    left: 72px;
+    width: 14px;
+    height: 145px;
+    background: #634a43;
+}
+
+.lamp-base {
+    position: absolute;
+    bottom: 0;
+    left: 45px;
+    width: 75px;
+    height: 18px;
+    border-radius: 50%;
+    background: #604b45;
+}
+
+/* =========================================
+   LAMP MESSAGE
+========================================= */
+
+.lamp-message {
+    position: absolute;
+    right: 8%;
+    bottom: 49%;
+    width: 230px;
+    padding: 14px 18px;
+    background: rgba(20, 24, 48, 0.92);
+    border: 1px solid rgba(255, 230, 190, 0.18);
+    border-radius: 14px;
+    color: #fff0d5;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: 0.4s ease;
+    z-index: 50;
+}
+
+.lamp-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   DESK
+========================================= */
+
+.desk {
+    position: absolute;
+    left: 50%;
+    bottom: 14%;
+    transform: translateX(-50%);
+    width: 620px;
+    height: 75px;
+    background: #5a352c;
+    border-radius: 5px 5px 12px 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 7;
+}
+
+.desk::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 300px;
+    left: 50%;
+    top: 60px;
+    transform: translateX(-50%);
+    background: #55332f;
+}
+
+/* =========================================
+   BOOK
+========================================= */
+
+.book {
+    position: absolute;
+    left: 25%;
+    top: -18px;
+    width: 100px;
+    height: 18px;
+    border-radius: 3px;
+    background: #8e6653;
+}
+
+/* =========================================
+   LETTER
+========================================= */
+
+.letter {
+    position: absolute;
+    left: 42%;
+    top: -42px;
+    width: 100px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    cursor: pointer;
+    z-index: 12;
+    transform: rotate(4deg);
+    transition: transform 0.3s ease;
+}
+
+.letter:hover {
+    transform: rotate(0deg) scale(1.08);
+}
+
+/* =========================================
+   LETTER POPUP
+========================================= */
+
+.letter-overlay,
+.mood-overlay,
+.memory-overlay,
+.box-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(5, 8, 25, 0.72);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 100;
+}
+
+.letter-overlay.show,
+.mood-overlay.show,
+.memory-overlay.show,
+.box-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.letter-popup,
+.mood-popup,
+.memory-popup,
+.box-popup {
+    position: relative;
+    width: min(470px, 90vw);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 40px 35px;
+    background: #f5e6c9;
+    color: #342633;
+    border-radius: 18px;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+    text-align: center;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s ease;
+}
+
+.letter-overlay.show .letter-popup,
+.mood-overlay.show .mood-popup,
+.memory-overlay.show .memory-popup,
+.box-overlay.show .box-popup {
+    transform: scale(1) translateY(0);
+}
+
+.letter-icon,
+.mood-icon,
+.memory-icon,
+.box-icon {
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+
+.letter-popup h2,
+.mood-popup h2,
+.memory-popup h2,
+.box-popup h2 {
+    margin-bottom: 18px;
+    font-size: 26px;
+}
+
+.letter-popup p,
+.memory-popup p {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.letter-signature {
+    margin-top: 22px;
+    font-style: italic;
+    color: #72546a;
+}
+
+.close-letter,
+.close-mood,
+.close-memory,
+.close-box {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    border: none;
+    background: transparent;
+    color: #5d4354;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* =========================================
+   HEADPHONES
+   WALL-HANGING POSITION
+========================================= */
+
+.headphones {
+    position: absolute;
+    right: 17%;
+    top: 58%;
+    font-size: 48px;
+    cursor: pointer;
+    z-index: 18;
+    transform: rotate(-5deg);
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.25));
+    transition: transform 0.3s ease;
+}
+
+.headphones:hover {
+    transform: rotate(-5deg) scale(1.1);
+}
+
+/* little wall hook */
+.headphones::before {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #bda28e;
+    left: 50%;
+    top: -5px;
+    transform: translateX(-50%);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   MOOD POPUP
+========================================= */
+
+.mood-subtitle {
+    margin-bottom: 20px;
+    color: #735d6c;
+}
+
+.mood-buttons {
+    display: grid;
+    gap: 10px;
+}
+
+.mood-buttons button {
+    padding: 13px 15px;
+    border: none;
+    border-radius: 12px;
+    background: #ead4b9;
+    color: #392938;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.mood-buttons button:hover {
+    transform: translateY(-2px);
+    background: #dfc2a0;
+}
+
+.mood-message {
+    margin-top: 18px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #fff4df;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: 0.3s ease;
+}
+
+.mood-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   BOOKSHELF
+========================================= */
+
+.bookshelf {
+    position: absolute;
+    left: 5%;
+    bottom: 14%;
+    width: 170px;
+    height: 250px;
+    background: #402a2c;
+    border: 8px solid #523434;
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+    z-index: 8;
+}
+
+.bookshelf::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 45%;
+    height: 8px;
+    background: #523434;
+}
+
+.shelf-book {
+    position: absolute;
+    bottom: 20px;
+    width: 40px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px 4px 0 0;
+    color: #f6dfc2;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.shelf-book:hover {
+    transform: translateY(-5px);
+}
+
+.book-one {
+    left: 12px;
+    background: #875d68;
+}
+
+.book-two {
+    left: 58px;
+    height: 125px;
+    background: #526b76;
+}
+
+.book-three {
+    left: 105px;
+    height: 100px;
+    background: #89694f;
+}
+
+/* =========================================
+   MEMORY POPUP
+========================================= */
+
+.memory-popup {
+    background: #f3e4c9;
+}
+
+.memory-popup p {
+    white-space: pre-line;
+}
+
+.next-memory {
+    margin-top: 12px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #654c61;
+    color: #fff4e3;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* =========================================
+   PLANT
+========================================= */
+
+.plant {
+    position: absolute;
+    right: 20%;
+    bottom: 16%;
+    font-size: 70px;
+    cursor: pointer;
+    z-index: 13;
+    animation: plantFloat 4s ease-in-out infinite;
+}
+
+@keyframes plantFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+/* =========================================
+   SECRET NOTE
+========================================= */
+
+.secret-note {
+    position: absolute;
+    right: 17%;
+    bottom: 34%;
+    width: 220px;
+    padding: 18px;
+    border-radius: 14px;
+    background: #f4e6ca;
+    color: #40303c;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: 0.35s ease;
+    z-index: 60;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+}
+
+.secret-note.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.secret-note span:first-child {
+    font-size: 28px;
+}
+
+.secret-note p {
+    margin-top: 8px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.tiny-clue {
+    color: #75566d;
+}
+
+/* =========================================
+   SECRET BOX
+========================================= */
+
+.secret-box {
+    position: absolute;
+    left: 41%;
+    bottom: 22%;
+    font-size: 48px;
+    cursor: pointer;
+    z-index: 20;
+    transition: transform 0.3s ease;
+}
+
+.secret-box:hover {
+    transform: scale(1.1) rotate(-4deg);
+}
+
+/* =========================================
+   SECRET BOX POPUP
+========================================= */
+
+.box-popup {
+    background: #f4e5c9;
+}
+
+.box-clue {
+    margin-bottom: 20px;
+    color: #735a67;
+    line-height: 1.6;
+}
+
+#passwordInput {
+    width: 100%;
+    padding: 13px 15px;
+    border: 2px solid #d4bda0;
+    border-radius: 10px;
+    outline: none;
+    background: #fffaf0;
+    color: #382936;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+#passwordInput:focus {
+    border-color: #94718a;
+}
+
+.unlock-button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: #654c61;
+    color: white;
+    font-family: inherit;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.wrong-password {
+    display: none;
+    margin-top: 12px;
+    color: #a34d58;
+    font-size: 14px;
+}
+
+.wrong-password.show {
+    display: block;
+}
+
+/* =========================================
+   FINAL REVEAL
+========================================= */
+
+.unlock-glow {
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 220, 170, 0.18),
+            transparent 55%
+        );
+    opacity: 0;
+    pointer-events: none;
+    z-index: 150;
+    transition: opacity 1.2s ease;
+}
+
+.room.final-reveal .unlock-glow {
+    opacity: 1;
+}
+
+.room.final-reveal .stars {
+    animation-duration: 1.2s;
+}
+
+.room.final-reveal .moon {
+    transform: scale(1.08);
+}
+
+.room.final-reveal .welcome {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.final-message {
+    display: none;
+    margin-top: 20px;
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.final-message.show {
+    display: block;
+}
+
+.final-heart {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.final-message h2 {
+    color: #654c61;
+}
+
+.final-letter {
+    margin-top: 20px;
+}
+
+.final-letter p {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: letterLine 0.8s ease forwards;
+    margin-bottom: 16px;
+    line-height: 1.65;
+}
+
+.final-letter p:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.final-letter p:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+.final-letter p:nth-child(3) {
+    animation-delay: 1.3s;
+}
+
+.final-letter p:nth-child(4) {
+    animation-delay: 1.8s;
+}
+
+.final-letter p:nth-child(5) {
+    animation-delay: 2.3s;
+}
+
+.final-letter p:nth-child(6) {
+    animation-delay: 2.8s;
+}
+
+.final-letter p:nth-child(7) {
+    animation-delay: 3.3s;
+}
+
+.final-highlight {
+    font-weight: bold;
+    color: #654c61;
+}
+
+.signature {
+    display: block;
+    margin-top: 25px;
+    opacity: 0;
+    animation: signatureAppear 1s ease forwards;
+    animation-delay: 3.8s;
+    font-style: italic;
+}
+
+@keyframes letterLine {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes signatureAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   WELCOME TEXT
+========================================= */
+
+.welcome {
+    position: absolute;
+    left: 50%;
+    bottom: 4%;
+    transform: translateX(-50%);
+    width: 700px;
+    max-width: 90vw;
+    text-align: center;
+    color: #f6e8d3;
+    z-index: 25;
+}
+
+.welcome h1 {
+    font-size: 34px;
+    font-weight: normal;
+    margin-bottom: 7px;
+}
+
+.welcome p {
+    font-size: 15px;
+    color: #d8c5bd;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .room {
+        min-height: 0;
+    }
+
+    /* WINDOW */
+
+    .window {
+        width: 72vw;
+        height: 38vh;
+        min-height: 330px;
+        top: 5%;
+        border-width: 8px;
+    }
+
+    .window::before {
+        width: 8px;
+    }
+
+    .window::after {
+        height: 8px;
+    }
+
+    .moon {
+        width: 58px;
+        height: 58px;
+        right: 17%;
+        top: 17%;
+    }
+
+    /* LAMP */
+
+    .lamp {
+        right: 1%;
+        bottom: 24%;
+        transform: scale(0.68);
+        transform-origin: bottom right;
+    }
+
+    .lamp-message {
+        right: 5%;
+        bottom: 43%;
+        width: 200px;
+        font-size: 13px;
+    }
+
+    /* DESK */
+
+    .desk {
+        width: 70vw;
+        height: 60px;
+        left: 15%;
+        bottom: 24%;
+        transform: none;
+    }
+
+    .desk::after {
+        width: 18px;
+        height: 250px;
+        left: 25%;
+    }
+
+    .book {
+        left: 25%;
+    }
+
+    /* LETTER */
+
+    .letter {
+        left: 42%;
+        top: -38px;
+        width: 90px;
+        height: 65px;
+        font-size: 43px;
+    }
+
+    /* BOOKSHELF */
+
+    .bookshelf {
+        left: 3%;
+        bottom: 24%;
+        width: 125px;
+        height: 170px;
+        border-width: 7px;
+    }
+
+    .bookshelf::before {
+        height: 7px;
+    }
+
+    .shelf-book {
+        width: 27px;
+        height: 72px;
+        bottom: 14px;
+        font-size: 10px;
+    }
+
+    .book-one {
+        left: 10px;
+    }
+
+    .book-two {
+        left: 45px;
+        height: 82px;
+    }
+
+    .book-three {
+        left: 80px;
+        height: 65px;
+    }
+
+    /* HEADPHONES */
+
+    .headphones {
+    right: 31%;
+    top: 57%;
+    font-size: 40px;
+    z-index: 18;
+}
+    /* PLANT */
+
+    .plant {
+        right: 17%;
+        bottom: 25%;
+        font-size: 50px;
+    }
+
+    /* SECRET BOX */
+
+    .secret-box {
+    left: 38%;
+    bottom: 32%;
+    font-size: 40px;
+}
+    /* SECRET NOTE */
+
+    .secret-note {
+        right: 8%;
+        bottom: 38%;
+        width: 220px;
+    }
+
+    /* WELCOME */
+
+    .welcome {
+        width: 90vw;
+        bottom: 16%;
+        z-index: 30;
+    }
+
+    .welcome h1 {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .welcome p {
+        font-size: 12px;
+    }
+
+    /* POPUPS */
+
+    .letter-popup,
+    .mood-popup,
+    .memory-popup,
+    .box-popup {
+        width: 90vw;
+        max-height: 78vh;
+        padding: 30px 22px;
+    }
+
+    .letter-popup h2,
+    .mood-popup h2,
+    .memory-popup h2,
+    .box-popup h2 {
+        font-size: 22px;
+    }
+
+    .letter-popup p,
+    .memory-popup p,
+    .final-letter p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .final-message {
+        max-height: 62vh;
+    }
+}
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 380px) {
+
+    .window {
+        width: 76vw;
+        height: 35vh;
+    }
+
+    .bookshelf {
+        width: 115px;
+    }
+
+    .shelf-book {
+        width: 25px;
+    }
+
+    .book-two {
+        left: 41px;
+    }
+
+    .book-three {
+        left: 74px;
+    }
+
+    .headphones {
+    right: 23%;
+    top: 51%;
+    font-size: 40px;
+}
+
+    .welcome {
+        bottom: 15%;
+    }
+
+    .welcome h1 {
+        font-size: 20px;
+    }
+
+    .secret-box {
+    left: 35%;
+    bottom: 32%;
+    font-size: 40px;
+}
+}
+/* DESKTOP WELCOME FIX */
+@media (min-width: 701px) {
+    .welcome {
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        left: 50%;
+        bottom: 5%;
+        z-index: 100;
+    }
+
+    .welcome h1 {
+        font-size: 34px;
+    }
+
+    .welcome p {
+        font-size: 15px;
+    }
+}
+/* MUSIC BUTTON */
+
+.music-button {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 235, 205, 0.25);
+    border-radius: 50%;
+    background: rgba(25, 29, 55, 0.75);
+    color: #fff0d5;
+    font-size: 21px;
+    cursor: pointer;
+    z-index: 200;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.music-button:hover {
+    transform: scale(1.08);
+}
+
+.music-button.playing {
+    animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@media (max-width: 700px) {
+    .music-button {
+        top: 15px;
+        right: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 19px;
+    }
+}
+/* =========================================
+   SECRET LOCK - CINEMATIC UNLOCK
+========================================= */
+
+.secret-box {
+    transition:
+        transform 0.35s ease,
+        filter 0.35s ease;
+}
+
+.secret-box:hover {
+    transform: scale(1.12) rotate(-4deg);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 120, 0.45));
+}
+
+/* Lock shakes when wrong password */
+
+/* Unlock glow */
+.box-popup.unlocking {
+    animation: unlockPopup 0.8s ease;
+}
+
+@keyframes unlockPopup {
+    0% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Final glow gets stronger */
+.room.final-reveal .unlock-glow {
+    opacity: 1;
+    animation: finalGlow 2s ease forwards;
+}
+
+@keyframes finalGlow {
+    0% {
+        opacity: 0;
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+/* Make the final message feel softer */
+.room.final-reveal .final-message {
+    animation: finalMessageAppear 1.2s ease forwards;
+}
+
+@keyframes finalMessageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* =========================================
+   PLANT - SECRET REVEAL
+========================================= */
+
+.plant {
+    transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.plant:hover {
+    transform: scale(1.08) rotate(-3deg);
+    filter: drop-shadow(0 0 10px rgba(180, 220, 170, 0.35));
+}
+
+.plant.secret-active {
+    animation: plantSecret 0.7s ease;
+}
+
+@keyframes plantSecret {
+    0% {
+        transform: scale(1) rotate(0);
+    }
+
+    35% {
+        transform: scale(1.15) rotate(-4deg);
+    }
+
+    65% {
+        transform: scale(1.15) rotate(4deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+    }
+}
+
+.secret-note {
+    transform: translateY(12px) scale(0.96);
+}
+
+.secret-note.show {
+    animation: secretNoteAppear 0.45s ease forwards;
+}
+
+@keyframes secretNoteAppear {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* little sparkle */
+
+.secret-note::before,
+.secret-note::after {
+    content: "✦";
+    position: absolute;
+    color: #d9b978;
+    font-size: 16px;
+    opacity: 0;
+}
+
+.secret-note.show::before {
+    left: 15px;
+    top: 12px;
+    animation: sparkle 0.8s ease forwards;
+}
+
+.secret-note.show::after {
+    right: 15px;
+    bottom: 12px;
+    animation: sparkle 0.8s ease 0.15s forwards;
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(90deg);
+    }
+
+    100% {
+        opacity: 0.7;
+        transform: scale(1) rotate(180deg);
+    }
+}
+/* =========================================
+   LAMP ON / OFF GLOW
+========================================= */
+
+.lamp-light {
+    opacity: 0.15;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.lamp.lamp-on .lamp-light {
+    opacity: 1;
+    transform: scale(1.25);
+}
+
+.lamp.lamp-on .lamp-shade {
+    filter:
+        brightness(1.25)
+        drop-shadow(0 0 18px rgba(255, 220, 150, 0.75));
+    transition: filter 0.5s ease;
+}
+
+.lamp.lamp-on {
+    filter: drop-shadow(0 0 18px rgba(255, 215, 145, 0.35));
+}
+/* =========================
+   ENTRY PASSWORD SCREEN
+========================= */
+
+.entry-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 50% 35%, rgba(80, 70, 120, 0.25), transparent 45%),
+        #090b18;
+
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.entry-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.entry-card {
+    width: min(90%, 390px);
+    padding: 38px 28px;
+
+    text-align: center;
+
+    background: rgba(25, 29, 55, 0.82);
+    border: 1px solid rgba(255, 235, 205, 0.15);
+    border-radius: 24px;
+
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(15px);
+
+    animation: entryAppear 0.8s ease;
+}
+
+.entry-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.entry-card h1 {
+    margin: 0 0 10px;
+    color: #fff0d5;
+    font-size: 28px;
+}
+
+.entry-card > p {
+    margin: 0 0 24px;
+    color: rgba(255, 240, 213, 0.7);
+    font-size: 14px;
+}
+
+#entryPassword {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border: 1px solid rgba(255, 235, 205, 0.18);
+    border-radius: 12px;
+
+    outline: none;
+
+    background: rgba(10, 12, 25, 0.7);
+    color: #fff0d5;
+
+    font-size: 15px;
+    text-align: center;
+
+    margin-bottom: 12px;
+}
+
+#entryPassword::placeholder {
+    color: rgba(255, 240, 213, 0.4);
+}
+
+#entryPassword:focus {
+    border-color: rgba(255, 220, 160, 0.45);
+}
+
+#entryButton {
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #d9b978;
+    color: #171421;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+#entryButton:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.08);
+}
+
+.entry-error {
+    display: none;
+
+    margin-top: 14px !important;
+    margin-bottom: 0 !important;
+
+    color: #ffaaa8 !important;
+    font-size: 13px !important;
+}
+
+.entry-error.show {
+    display: block;
+}
+
+@keyframes entryAppear {
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.entry-card.shake {
+    animation: entryShake 0.45s ease;
+}
+
+@keyframes entryShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-8px);
+    }
+
+    40% {
+        transform: translateX(8px);
+    }
+
+    60% {
+        transform: translateX(-6px);
+    }
+
+    80% {
+        transform: translateX(6px);
+    }
+}
+
+@media (max-width: 700px) {
+
+    .entry-card {
+        width: 82%;
+        padding: 32px 22px;
+    }
+
+    .entry-card h1 {
+        font-size: 25px;
+    }
+
+    .entry-icon {
+        font-size: 42px;
+    }
+}

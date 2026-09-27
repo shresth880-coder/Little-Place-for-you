@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Place For You</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- ENTRY PASSWORD -->
+<div class="entry-screen" id="entryScreen">
+    <div class="entry-card">
+        <div class="entry-icon">🔐</div>
+
+        <h1>A little secret...</h1>
+        <p>This little place isn't for everyone. 👀</p>
+
+        <input
+            type="password"
+            id="entryPassword"
+            placeholder="Enter the password..."
+            autocomplete="off"
+        >
+
+        <button id="entryButton">Enter ❤️</button>
+
+        <p class="entry-error" id="entryError">
+            Hmm... that's not it. 👀
+        </p>
+    </div>
+</div>
+<div class="room">
+<audio id="bgMusic" loop>
+    <source src="Tum Se Hi - Instrumental.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-button" id="musicButton">🎵</button>
+    <!-- WINDOW -->
+    <div class="window">
+        <div class="moon"></div>
+        <div class="stars"></div>
+    </div>
+
+    <!-- LAMP -->
+    <div class="lamp" id="lamp">
+        <div class="lamp-light"></div>
+        <div class="lamp-shade"></div>
+        <div class="lamp-stand"></div>
+        <div class="lamp-base"></div>
+    </div>
+
+    <div class="lamp-message" id="lampMessage">
+        Some places feel warmer when you're here. ❤️
+    </div>
+
+
+    <!-- DESK -->
+    <div class="desk">
+
+        <div class="book"></div>
+
+        <div class="letter" id="letter">💌</div>
+
+    </div>
+
+
+    <!-- LETTER POPUP -->
+    <div class="letter-overlay" id="letterOverlay">
+
+        <div class="letter-popup">
+
+            <button class="close-letter" id="closeLetter">×</button>
+
+            <div class="letter-icon">💌</div>
+
+            <h2>A little note for you</h2>
+
+            <p>
+                Some things don't really need a special occasion.
+                Sometimes, you just want someone to know
+                that they're special.
+            </p>
+
+            <p>
+                So here's a little reminder:
+                you deserve good things, good people,
+                and plenty of reasons to smile. ❤️
+            </p>
+
+            <div class="letter-signature">
+                — from someone who cares
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HEADPHONES -->
+    <div class="headphones" id="headphones">🎧</div>
+
+
+    <!-- MOOD POPUP -->
+    <div class="mood-overlay" id="moodOverlay">
+
+        <div class="mood-popup">
+
+            <button class="close-mood" id="closeMood">×</button>
+
+            <div class="mood-icon">🎧</div>
+
+            <h2>How are you feeling?</h2>
+
+            <p class="mood-subtitle">
+                Pick whatever feels right.
+            </p>
+
+            <div class="mood-buttons">
+
+                <button data-message="It's okay to have bad days. You don't have to pretend to be okay all the time. Take a breath. You're doing better than you think. ❤️">
+                    😔 I'm feeling sad
+                </button>
+
+                <button data-message="Take a little break. Put everything aside for a moment, breathe slowly, and give yourself some peace. You don't have to solve everything right now. 🌙">
+                    😩 I'm stressed
+                </button>
+
+                <button data-message="Then here's your reminder: you matter, you're appreciated, and somewhere out there someone is quietly rooting for you. 🫂">
+                    🥺 I need a little comfort
+                </button>
+
+                <button data-message="Then keep that smile going. Whatever made today good, I hope you get many more days like this. ✨">
+                    😊 I'm having a good day
+                </button>
+
+            </div>
+
+            <div class="mood-message" id="moodMessage"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BOOKSHELF -->
+    <div class="bookshelf" id="bookshelf">
+
+        <div class="shelf-book book-one">?</div>
+        <div class="shelf-book book-two">?</div>
+        <div class="shelf-book book-three">?</div>
+
+    </div>
+
+
+    <!-- MEMORY POPUP -->
+    <div class="memory-overlay" id="memoryOverlay">
+
+        <div class="memory-popup">
+
+            <button class="close-memory" id="closeMemory">×</button>
+
+            <div class="memory-icon">📖</div>
+
+            <h2 id="memoryTitle">
+                A little thing
+            </h2>
+
+            <p id="memoryText"></p>
+
+            <button class="next-memory" id="nextMemory">
+                Turn the page →
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PLANT -->
+    <div class="plant" id="plant">
+        🌿
+    </div>
+
+    <div class="secret-note" id="secretNote">
+
+        <span>✨</span>
+
+        <p>
+            Some little things are meant to be discovered.
+            <br><br>
+
+            <span class="tiny-clue">
+                Look through the room carefully... 👀
+            </span>
+        </p>
+
+    </div>
+
+
+    <!-- SECRET BOX -->
+    <div class="secret-box" id="secretBox">
+        🔐
+    </div>
+
+
+    <!-- SECRET BOX POPUP -->
+    <div class="box-overlay" id="boxOverlay">
+
+        <div class="box-popup">
+
+            <button class="close-box" id="closeBox">
+                ×
+            </button>
+
+            <div class="box-icon">
+                🔐
+            </div>
+
+            <h2>A little secret...</h2>
+
+            <p class="box-clue">
+                Some things are hidden for a reason.
+                <br>
+                Maybe you just need to look a little closer. 👀
+            </p>
+
+            <input
+                type="text"
+                id="passwordInput"
+                placeholder="Enter the secret..."
+                autocomplete="off"
+            >
+
+            <button class="unlock-button" id="unlockButton">
+                Unlock
+            </button>
+
+            <p class="wrong-password" id="wrongPassword">
+                Hmm... not quite. Try again. 👀
+            </p>
+
+
+            <!-- FINAL GLOW -->
+            <div class="unlock-glow" id="unlockGlow"></div>
+
+
+            <!-- FINAL MESSAGE -->
+            <div class="final-message" id="finalMessage">
+
+                <div class="final-heart">
+                    ❤️
+                </div>
+
+                <h2>
+                    Hey, Dear...
+                </h2>
+
+                <div class="final-letter">
+
+                    <p>
+                        I don't really know when these little things
+                        started becoming so special to me.
+                    </p>
+
+                    <p>
+                        Maybe it's your eyes...
+                        the kind that somehow manage to grab my attention
+                        without even trying.
+                    </p>
+
+                    <p>
+                        Maybe it's your voice,
+                        which can make an ordinary conversation
+                        feel a little more special.
+                    </p>
+
+                    <p>
+                        Or maybe it's simply the way you talk to me.
+                        Somehow, even the simplest conversations
+                        stay in my mind a little longer.
+                    </p>
+
+                    <p>
+                        And yes, <strong>Chashmish</strong>...
+                        I made this little place for you
+                        for absolutely no special occasion.
+                    </p>
+
+                    <p>
+                        I just wanted to make something
+                        that might make you smile.
+                    </p>
+
+                    <p class="final-highlight">
+                        Because you're a little more special
+                        than you probably realise. ❤️
+                    </p>
+
+                    <span class="signature">
+                        — from someone who really likes talking to you 🫶
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- WELCOME -->
+    <div class="welcome">
+
+        <h1>
+            A little place for you.
+        </h1>
+
+        <p>
+            Take your time. Look around. ❤️
+        </p>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
